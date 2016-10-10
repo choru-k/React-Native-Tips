@@ -1,5 +1,9 @@
 # How to add Firebase Auth with react native
 
+If you want to add only what is supported with firebase-js-sdk such as auth and realtime-database, READ [THIS](https://medium.com/@jamesmarino/getting-started-with-react-native-and-firebase-ab1f396db549#.lpv5bwtwj)
+
+AND If you want more feature, Read my Post Or Read [THIS](https://www.fullstackreact.com/articles/announcing-firestack-for-firebase/)
+
 ## iOS
 
 ### firebase Setup
@@ -385,7 +389,9 @@ class firebaseLoginTest extends Component {
 Go firebase console and add Android
 Read [this](https://firebase.google.com/docs/android/setup)
 
-we use [react-native-firebase-auth-android](https://github.com/g6ling/react-native-firebase-auth-android).
+This is legacy. You can use react-native-firestack in Android. use it.
+
+~~we use [react-native-firebase-auth-android](https://github.com/g6ling/react-native-firebase-auth-android).~~
 
 read README.md, and follow the step.
 
