@@ -2,11 +2,17 @@
 
 If you wanted to upload photo/file in react-native, almostly you have found many library such as [react-native-uploader](https://github.com/aroth/react-native-uploader) , [react-native-file-upload](https://github.com/booxood/react-native-file-upload). But I think easiest way is this post, not use library, not write native code, and anybody can understand. 
 
+# Index
+ - use fetch
+ - How can I get photo from gallery?
+ - How can I add progress?
+ - Sample (server, photoGallery, imageUpload)
+
 # use fetch 
 
 Fetch supports `multipart/form-data`. You can upload your `formdata` like in webbrower. see [this](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Body)
 
- ### example
+### example
 
 
 
@@ -120,9 +126,10 @@ futch(url, {
 
 
 
-# Sample
+# Sample (server, photoGallery, imageUpload)
 
-use react-native-image-picker and react-native-camera-roll-picker(based on React Native CameraRoll API). 
+This sample uses react-native-image-picker and react-native-camera-roll-picker(based on React Native CameraRoll API). 
+Server uses nodeJS.
 
 ## [Here](https://github.com/g6ling/react-native-fileUpload-example)
 
