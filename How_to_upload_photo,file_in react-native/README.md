@@ -7,6 +7,7 @@ If you wanted to upload photo/file in react-native, almostly you have found many
  - How can I get photo from gallery?
  - How can I add progress?
  - Sample (server, photoGallery, imageUpload)
+ - Add progress using fetch
 
 # use fetch 
 
@@ -133,3 +134,35 @@ Server uses nodeJS.
 
 ## [Here](https://github.com/g6ling/react-native-fileUpload-example)
 
+# Add Progress with fetch
+I think this way using two ways which are fetch and futch in networking is not pretty.
+So I overwrite fetch. 
+
+```javascript
+import futch from './src/api';
+const originalFetch = fetch
+global.fetch = (url, opts) => {
+  console.log(opts.onProgress)
+  if (opts.onProgress && typeof opts.onProgress === 'function') {
+    return futch(url, opts, opts.onProgress)
+  } return originalFetch(url, opts)
+}
+export default class photoUploadTest extends Component {
+ ...
+}
+```
+If you add this in your top file like `index.ios.js`, you can use fetch with progress.
+
+```javascript
+fetch(url + '/array', {
+      method: 'post',
+      body: data,
+      onProgress: (e) => {
+        const progress = e.loaded / e.total;
+        console.log(progress);
+        this.setState({
+          progress: progress
+        });
+      }
+    }).then((res) => console.log(res), (e) => console.log(e))
+```
