@@ -3,11 +3,12 @@
 If you wanted to upload photo/file in react-native, almostly you have found many library such as [react-native-uploader](https://github.com/aroth/react-native-uploader) , [react-native-file-upload](https://github.com/booxood/react-native-file-upload). But I think easiest way is this post, not use library, not write native code, and anybody can understand. 
 
 # Index
- - use fetch
- - How can I get photo from gallery?
- - How can I add progress?
- - Sample (server, photoGallery, imageUpload)
- - Add progress using fetch
+- Use fetch
+- How can I get photo from gallery?
+- How can I add progress?
+- Sample (server, photoGallery, imageUpload)
+- Add progress using fetch
+- Use other network libraries
 
 # use fetch 
 
@@ -166,3 +167,57 @@ fetch(url + '/array', {
       }
     }).then((res) => console.log(res), (e) => console.log(e))
 ```
+
+
+
+# Using other libraries
+
+If you use another library such as axios, apisauce(wrapper axios), you can use progress config.
+
+### example
+
+In this case, I use [apisauce](https://github.com/skellock/apisauce). Apisauce with [reactotron](https://github.com/reactotron/reactotron) is awesome. If you don't know this, try.
+
+```js
+import { create } from 'apisauce'
+
+// create api. 
+const api = create({
+  baseURL: 'http://localhost:3000',
+})
+
+// create formdata
+const data = new FormData();
+    data.append('name', 'testName');
+    photos.forEach((photo, index) => {
+      data.append('photos', {
+        uri: photo.uri,
+        type: 'image/jpeg',
+        name: 'image'+index
+      });
+    });
+
+// post your data.
+api.post('/array', data, {
+      onUploadProgress: (e) => {
+        console.log(e)
+        const progress = e.loaded / e.total;
+        console.log(progress);
+        this.setState({
+          progress: progress
+        });
+      }
+    })
+      .then((res) => console.log(res))
+
+// if you want to add DonwloadProgress, use onDownloadProgress
+onDownloadProgress: (e) => {
+  const progress = e.loaded / e.total;
+}
+
+```
+
+
+
+This way is best I think.
+
