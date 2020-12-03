@@ -20,12 +20,14 @@ Fetch supports `multipart/form-data`. You can upload your `formdata` like in web
 
 ```jsx
 const data = new FormData();
+
 data.append('name', 'testName'); // you can append anyone.
 data.append('photo', {
   uri: photo.uri,
   type: 'image/jpeg', // or photo.type
   name: 'testPhotoName'
 });
+
 fetch(url, {
   method: 'post',
   body: data
@@ -37,7 +39,9 @@ fetch(url, {
 only this. If you want many photos
 
 ```js
+const data = new FormData();
 const photos = [photo1, photo2, ...]
+
 photos.forEach((photo) => {
     data.append('photo', {
     uri: photo.uri,
@@ -45,6 +49,12 @@ photos.forEach((photo) => {
     name: photos.name
   });  
 });
+
+const opts = {
+  method: 'post',
+  body: data
+}
+
 fetch(url, opts);
 
 ```
